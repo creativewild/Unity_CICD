@@ -26,12 +26,15 @@ public class BuildScript
                 {
                     case "windows":
                         targetPlatform = BuildTarget.StandaloneWindows64;
+                        outputPath += ".exe";
                         break;
                     case "mac":
                         targetPlatform = BuildTarget.StandaloneOSX;
+                        outputPath += ".dmg";
                         break;
                     case "linux":
                         targetPlatform = BuildTarget.StandaloneLinux64;
+                        outputPath += ".x32_x64";
                         break;
                     case "android":
                         targetPlatform = BuildTarget.Android;
@@ -59,7 +62,7 @@ public class BuildScript
                 if (customSceneList == null)
                 {
                     Debug.LogError($"Scene list '{sceneListName}' not found in Resources.");
-                    return;
+                    //return; -- removed to prevent the build to fail even if the argument is passed but empty, will fallback to the the scene lsit in the build settings
                 }
             }
         }
